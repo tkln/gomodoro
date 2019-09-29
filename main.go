@@ -1,7 +1,29 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "os"
+    "log"
+    "path/filepath"
+)
 
 func main() {
     fmt.Println("hello")
+    session_file := ".pomodoro_session"
+    home := os.Getenv("HOME")
+
+    path := filepath.Join(home, session_file)
+
+    file, err := os.Open(path)
+    if (err != nil) {
+        log.Fatal(err)
+        return
+    }
+
+    info, err := file.Stat()
+    if (err != nil) {
+        log.Fatal(err)
+        return
+    }
+    fmt.Println(info.ModTime().String())
 }
