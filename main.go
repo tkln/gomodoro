@@ -5,6 +5,7 @@ import (
     "os"
     "log"
     "path/filepath"
+    "time"
 )
 
 func main() {
@@ -24,5 +25,8 @@ func main() {
         log.Fatal(err)
         return
     }
-    fmt.Println(info.ModTime().String())
+
+    start := info.ModTime()
+
+    fmt.Println(time.Since(start).String())
 }
