@@ -11,9 +11,7 @@ import (
 func main() {
     session_file := ".pomodoro_session"
     home := os.Getenv("HOME")
-
     path := filepath.Join(home, session_file)
-
     file, err := os.Open(path)
     if (err != nil) {
         log.Fatal(err)
@@ -26,7 +24,18 @@ func main() {
         return
     }
 
-    start := info.ModTime()
+    duration, err := time.ParseDuration("20m")
+    if (err != nil) {
+        log.Fatal(err)
+        return
+    }
 
-    fmt.Println(time.Since(start).String())
+    start := info.ModTime()
+    done := time.Since(start)
+
+    fmt.Println(done.String())
+
+    if (done.Nanoseconds() > duration.Nanoseconds()) {
+        fmt.Println("done!")
+    }
 }
