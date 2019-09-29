@@ -31,11 +31,18 @@ func main() {
     }
 
     start := info.ModTime()
-    done := time.Since(start)
 
-    fmt.Println(done.String())
+    for true {
+        done := time.Since(start)
 
-    if (done.Nanoseconds() > duration.Nanoseconds()) {
-        fmt.Println("done!")
+        if (done.Nanoseconds() > duration.Nanoseconds()) {
+            fmt.Print("done!")
+        } else {
+            fmt.Print(done.String())
+        }
+
+        d, _ := time.ParseDuration("1s")
+        time.Sleep(d)
+        fmt.Print("\r")
     }
 }
