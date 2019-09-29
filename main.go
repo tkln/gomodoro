@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-    fmt.Println("hello")
     session_file := ".pomodoro_session"
     home := os.Getenv("HOME")
 
