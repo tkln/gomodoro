@@ -39,7 +39,7 @@ func main() {
         done := time.Since(start)
         todo := duration - done
 
-        if (done.Nanoseconds() > duration.Nanoseconds()) {
+        if (done > duration) {
             fmt.Print("done!")
         } else {
             fmt.Print(todo.String())
