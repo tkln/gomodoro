@@ -34,11 +34,12 @@ func main() {
 
     for true {
         done := time.Since(start)
+        todo := duration - done
 
         if (done.Nanoseconds() > duration.Nanoseconds()) {
             fmt.Print("done!")
         } else {
-            fmt.Print(done.String())
+            fmt.Print(todo.String())
         }
 
         d, _ := time.ParseDuration("1s")
