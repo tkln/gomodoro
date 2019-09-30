@@ -33,14 +33,22 @@ func main() {
         return
     }
 
+    break_duration, err := time.ParseDuration("5m")
+    if (err != nil) {
+        log.Fatal(err)
+        return
+    }
+
     start := info.ModTime()
 
     for true {
         done := time.Since(start)
         todo := duration - done
+        break_remain := break_duration - (done - duration)
 
         if (done > duration) {
-            fmt.Print("done!")
+            fmt.Print("break ")
+            fmt.Print(break_remain.String())
         } else {
             fmt.Print(todo.String())
         }
