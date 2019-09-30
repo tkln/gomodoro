@@ -21,12 +21,6 @@ func main() {
         return
     }
 
-    info, err := file.Stat()
-    if (err != nil) {
-        log.Fatal(err)
-        return
-    }
-
     duration, err := time.ParseDuration("20m")
     if (err != nil) {
         log.Fatal(err)
@@ -39,9 +33,14 @@ func main() {
         return
     }
 
-    start := info.ModTime()
-
     for true {
+        info, err := file.Stat()
+        if (err != nil) {
+            log.Fatal(err)
+            return
+        }
+
+        start := info.ModTime()
         done := time.Since(start)
         todo := duration - done
         break_remain := break_duration - (done - duration)
